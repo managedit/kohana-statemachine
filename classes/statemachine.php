@@ -24,9 +24,12 @@ class StateMachine {
 	{
 		$this->_state = $initial_state;
 
-		foreach ($options as $key => $value)
+		if (is_array($options))
 		{
-			$this->{'_'.$key} = $value;
+			foreach ($options as $key => $value)
+			{
+				$this->{'_'.$key} = $value;
+			}
 		}
 	}
 
