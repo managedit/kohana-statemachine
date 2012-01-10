@@ -20,7 +20,7 @@ class StateMachine {
 
 	protected $_transition_callbacks = array();
 
-	protected function __construct($initial_state == NULL, $options = array())
+	protected function __construct($initial_state = NULL, $options = array())
 	{
 		$this->_state = $initial_state;
 
@@ -98,13 +98,13 @@ class StateMachine {
 
 		if ($state_to == $state_from)
 			throw new StateMachine_InvalidTransition_Exception('Unable to transition to \':state_to\' from \':state_from\'', array(
-					'state_to'   => $state,
+					'state_to'   => $state_to,
 					'state_from' => $this->_state,
 				));
 
 		if ( ! $this->can_transition($state_to))
 			throw new StateMachine_InvalidTransition_Exception('Unable to transition to \':state_to\' from \':state_from\'', array(
-					'state_to'   => $state,
+					'state_to'   => $state_to,
 					'state_from' => $this->_state,
 				));
 		
@@ -113,7 +113,7 @@ class StateMachine {
 			':state_to'   => $state_to,
 		));
 		
-		$this->state = $state_to;
+		$this->_state = $state_to;
 
 		// Trigger the transition callback if needed
 		$transition_callbacks = $this->transition_callbacks();
@@ -126,7 +126,7 @@ class StateMachine {
 			}
 			catch (Exception $e)
 			{
-				$this->state = $state_from;
+				$this->_state = $state_from;
 				
 				Kohana::$log->add(Log::ERROR, "Failed to transition from :state_from to :state_to. Message: :message", array(
 						':state_from' => $state_from,
