@@ -82,7 +82,7 @@ class ORM_StateMachine extends ORM {
 	 * 
 	 * @param   string  $state_to    Transition to state
 	 * @throws  StateMachine_InvalidTransition_Exception
-	 * @return  void
+	 * @return  ORM_StateMachine
 	 */
 	public function transition($state_to)
 	{
@@ -90,6 +90,8 @@ class ORM_StateMachine extends ORM {
 		$this->_statemachine->transition($state_to);
 
 		$this->{$this->_state_column} = $state_to;
+
+		return $this;
 	}
 
 	/**

@@ -125,7 +125,7 @@ class StateMachine {
 		{
 			try
 			{
-				call_user_func($transition_callbacks[$state_to], $state_to, $state_from, $save);
+				call_user_func($transition_callbacks[$state_to], $state_to, $state_from);
 			}
 			catch (Exception $e)
 			{
