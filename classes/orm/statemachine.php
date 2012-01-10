@@ -17,7 +17,12 @@ class ORM_StateMachine extends ORM {
 	/**
 	 * @var  string  Initial State
 	 */
-	protected $_initial_state = 'true';
+	protected $_initial_state = NULL;
+
+	/**
+	 * @var  string  Column to use for state management
+	 */
+	protected $_state_column = 'state';
 
 	public function __construct($id = NULL)
 	{
@@ -81,7 +86,10 @@ class ORM_StateMachine extends ORM {
 	 */
 	public function transition($state_to)
 	{
-		return $this->_statemachine->transition($state_to);
+		// This will raise if there is a failure.
+		$this->_statemachine->transition($state_to);
+
+		$this->{$this->_state_column} = $state_to;
 	}
 
 	/**
@@ -95,7 +103,7 @@ class ORM_StateMachine extends ORM {
 	{
 		switch ($column)
 		{
-			case 'state':
+			case $this->_state_column:
 				throw new ORM_StateMachine_Exception('Unable to manually set the state column. Please use the ORM_StateMachine::transition() method.');
 			default:
 				return parent::set($column, $value);
