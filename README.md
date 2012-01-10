@@ -27,8 +27,7 @@ $state_machine = StateMachine::factory($initial_state, array(
 	'transitions'          => $transitions,
 	'transition_callbacks' => $transition_callbacks,
 ));
-~~
-
+~~~
 
 ### Get the current state.
 ~~~
