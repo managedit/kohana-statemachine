@@ -120,7 +120,7 @@ class StateMachine_StateMachineTest extends Unittest_TestCase
 	 *
 	 * @test
 	 */
-	public function test_transition_invalid2()
+	public function test_transition_invalid_revert()
 	{
 		$sm = $this->get_statemachine_instance();
 
@@ -137,6 +137,7 @@ class StateMachine_StateMachineTest extends Unittest_TestCase
 			$exception_caught = TRUE;
 		}
 
+		$this->assertTrue($exception_caught);
 		$this->assertSame('pending', $sm->state());
 	}
 
