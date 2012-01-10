@@ -45,7 +45,9 @@ class ORM_StateMachine extends ORM {
 	}
 
 	/**
-	 * Returns the transition callbacks array
+	 * Returns the transition callbacks array.
+	 * 
+	 * [!!] Remember that these are called regardless of if the model has been saved or not!
 	 * 
 	 * @return  array
 	 */
