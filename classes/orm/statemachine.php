@@ -83,4 +83,22 @@ class ORM_StateMachine extends ORM {
 	{
 		return $this->_statemachine->transition($state_to);
 	}
+
+	/**
+	 * Intercepts attempts to set the `state` column manually.
+	 * 
+	 * @param  string $column  Column name
+	 * @param  mixed  $value   Column value
+	 * @return void
+	 */
+	public function set($column, $value)
+	{
+		switch ($column)
+		{
+			case 'state':
+				throw new ORM_StateMachine_Exception('Unable to manually set the state column. Please use the ORM_StateMachine::transition() method.');
+			default:
+				return parent::set($column, $value);
+		}
+	}
 }
