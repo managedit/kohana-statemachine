@@ -4,6 +4,7 @@ This is a fairly simple state machine module for Kohana 3.
 
 # Example Usage
 
+## Initialize a StateMachine
 ~~~
 // Array of valid states, and the list of valid transitions from that state.
 $transitions = array(
@@ -26,19 +27,30 @@ $state_machine = StateMachine::factory($initial_state, array(
 	'transitions'          => $transitions,
 	'transition_callbacks' => $transition_callbacks,
 ));
+~~
 
-// Get the current state.
+
+### Get the current state.
+~~~
 $state_machine->state();
+~~~
 
-// Check if we can transition to a give state, from the current state.
+### Check if we can transition to a give state, from the current state.
+~~~
 $state_machine->can_transition('deleted');
+~~~
 
-// Check if we can transition to a give state, from a supplied state.
+### Check if we can transition to a give state, from a supplied state.
+~~~
 $state_machine->can_transition('deleted', 'pending');
+~~~
 
-// Transition to the supplied state
+### Transition to the supplied state
+~~~
 $state_machine->can_transition('active');
+~~~
 
-// Generate and return a PNG image documenting the statemachine
+### Generate and return a PNG image documenting the statemachine
+~~~
 $state_machine->generate_diagram('png');
 ~~~
