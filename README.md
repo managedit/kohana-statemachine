@@ -1,6 +1,6 @@
 # Kohana StateMachine Module
 
-This is a fairly simple state machine module for Kohana 3.
+This is a fairly simple state machine module for Kohana 3. It can be used standalone or with ORM.
 
 # Example Usage
 
@@ -107,7 +107,7 @@ class Model_User extends ORM_StateMachine {
 	public function transition_to_rejected_callback($state_to, $state_from)
 	{
 		// Do something... Maybe email a rejection letter?
-		
+
 		// Remember that this is called regardless of if the model has been
 		// saved or not!
 	}
