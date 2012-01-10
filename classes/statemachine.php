@@ -143,11 +143,14 @@ class StateMachine {
 	}
 
 	/**
-	 * Generates an dot graph of the state machine, returns the content of the image.
+	 * Generates an dot graph of the state machine, returns the raw contents of the image.
 	 * 
-	 * @param  string  $format     Image format - PNG, SVG, JPG
-	 * @param  string  $direction  Direction of graph - LR, TB, RL, BT
-	 * @param  string  $shape      Shape of states - circle, oval, square
+	 * Uses the `dot` command line utility to generate the graph.
+	 * 
+	 * @param   string  $format     Image format - PNG, SVG, JPG
+	 * @param   string  $direction  Direction of graph - LR, TB, RL, BT
+	 * @param   string  $shape      Shape of states - circle, oval, square
+	 * @return  string
 	 */
 	public function generate_diagram($format = NULL, $direction = NULL, $shape = NULL)
 	{
